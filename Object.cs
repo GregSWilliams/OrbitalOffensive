@@ -14,6 +14,7 @@ namespace OrbitalOffensive
         {
             foreach(string id in ids) 
             {
+                _ids = new List<string>();
                 AddIdentifier(id);
             }
         }

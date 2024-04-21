@@ -1,5 +1,8 @@
 using System;
+using System.Numerics;
+using System.Resources;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 using SplashKitSDK;
 
 namespace OrbitalOffensive
@@ -10,6 +13,10 @@ namespace OrbitalOffensive
         {
             Window window = new Window("Orbital Offensive", 800, 600);
             bool running = true;
+
+            Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
+            Ship ship = new Ship(new string[] { "player" }, bitmap, 100f, 100f, 0f);
+            
 
             do
             {
@@ -22,6 +29,7 @@ namespace OrbitalOffensive
                     running = false;
                 }
 
+                SplashKit.DrawAllSprites();
                 SplashKit.UpdateAllSprites();
 
                 SplashKit.RefreshScreen(60);
