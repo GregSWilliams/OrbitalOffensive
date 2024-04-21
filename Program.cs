@@ -14,9 +14,8 @@ namespace OrbitalOffensive
             Window window = new Window("Orbital Offensive", 800, 600);
             bool running = true;
 
-            Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
-            Ship ship = new Ship(new string[] { "player" }, bitmap, 100f, 100f, 0f);
-            
+            ObjectsManager objMan = new ObjectsManager();
+            objMan.SpawnAll();
 
             do
             {
