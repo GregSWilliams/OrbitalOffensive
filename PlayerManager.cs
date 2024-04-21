@@ -13,18 +13,21 @@ namespace OrbitalOffensive
         private float _startX;
         private float _startY;
         private ProjectileManager _projManager;
+        private SplashKitSDK.Timer _fireTimer;
 
         public PlayerManager(ProjectileManager projMan) 
         {
             _startX = SplashKit.ScreenWidth()/2;
             _startY = SplashKit.ScreenHeight()-64;
             _projManager = projMan;
+            _fireTimer = SplashKit.CreateTimer("FireTimer");
         }
 
         public void SpawnPlayer()
         {
             Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
             _player = new Ship(new string[] { "player", "ship" }, bitmap, _startX, _startY, 5f);
+            SplashKit.StartTimer(_fireTimer);
         }
 
         public void CheckForInput()
@@ -45,7 +48,11 @@ namespace OrbitalOffensive
             }
             if (SplashKit.KeyDown(KeyCode.SpaceKey))
             {
-                Fire();
+                if (SplashKit.TimerTicks(_fireTimer) > 1000)
+                {
+                    Fire();
+                    SplashKit.ResetTimer(_fireTimer);
+                }
             }
         }
 
