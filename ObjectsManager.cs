@@ -15,7 +15,7 @@ namespace OrbitalOffensive
             _playerManager = new PlayerManager();
         }
 
-        PlayerManager PlayerManager
+        public PlayerManager PlayerManager
         {
             get
             {

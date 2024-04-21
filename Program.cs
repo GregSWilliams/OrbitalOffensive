@@ -28,6 +28,9 @@ namespace OrbitalOffensive
                     running = false;
                 }
 
+
+                objMan.PlayerManager.CheckForInput();
+
                 SplashKit.DrawAllSprites();
                 SplashKit.UpdateAllSprites();
 
