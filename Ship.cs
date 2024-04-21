@@ -11,8 +11,8 @@ namespace OrbitalOffensive
     {
         private float _speed;
 
-        public Ship(string[] ids, Bitmap bitmap, float x, float y, float speed)
-            : base (ids, bitmap, x, y)
+        public Ship(string[] ids, Bitmap bitmap, float x, float y, float speed, int health)
+            : base (ids, bitmap, x, y, health)
         {
             Speed = speed;
         }

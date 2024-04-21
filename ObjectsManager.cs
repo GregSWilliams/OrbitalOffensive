@@ -49,6 +49,25 @@ namespace OrbitalOffensive
             _enemyManager.Move();
             _playerProjManager.Update();
             _enemyProjManager.Update();
+            CheckForCollisions();
+        }
+
+        public void CheckForCollisions()
+        {
+            foreach (Projectile p in _playerProjManager.Projectiles)
+            {
+                foreach (Ship s in _enemyManager.EnemyShips)
+                {
+                    if (p.CheckCollision(s.Sprite))
+                    {
+                        p.Destroy();
+                        s.Destroy();
+                        _enemyManager.RemoveShip(s);
+                        _playerProjManager.RemoveProjectile(p);
+                        return;
+                    }
+                }
+            }
         }
     }
 }

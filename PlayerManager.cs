@@ -26,7 +26,7 @@ namespace OrbitalOffensive
         public void SpawnPlayer()
         {
             Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
-            _player = new Ship(new string[] { "player", "ship" }, bitmap, _startX, _startY, 5f);
+            _player = new Ship(new string[] { "player", "ship" }, bitmap, _startX, _startY, 5f, 3);
             SplashKit.StartTimer(_fireTimer);
         }
 
@@ -61,7 +61,7 @@ namespace OrbitalOffensive
             Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
             float projX = _player.X;
             float projY = _player.Y;
-            Projectile projectile = new Projectile(new string[] { "player", "projectile" }, bitmap, projX, projY, 5f);
+            Projectile projectile = new Projectile(new string[] { "player", "projectile" }, bitmap, projX, projY, 5f, 1);
             _projManager.AddProjectile(projectile);
         }
     }

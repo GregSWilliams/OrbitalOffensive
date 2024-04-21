@@ -12,12 +12,13 @@ namespace OrbitalOffensive
         private Sprite _sprite;
         private int _health;
 
-        public GameObject(string[] ids, Bitmap bitmap, float x, float y)
+        public GameObject(string[] ids, Bitmap bitmap, float x, float y, int health)
             : base(ids)
         {
             _sprite = SplashKit.CreateSprite(bitmap);
             X = x;
             Y = y;
+            Health = health;
         }
 
         public float X
@@ -62,6 +63,11 @@ namespace OrbitalOffensive
             {
                 _health = value;
             }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health = Health - damage;
         }
 
         public void Destroy()

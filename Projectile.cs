@@ -11,8 +11,8 @@ namespace OrbitalOffensive
     {
         private SplashKitSDK.Timer _timer;
 
-        public Projectile(string[] ids, Bitmap bitmap, float x, float y, float speed)
-            : base(ids, bitmap, x, y)
+        public Projectile(string[] ids, Bitmap bitmap, float x, float y, float speed, int health)
+            : base(ids, bitmap, x, y, health)
         {
             _timer = SplashKit.CreateTimer("AliveTimer");
             _timer.Start();

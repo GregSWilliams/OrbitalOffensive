@@ -58,6 +58,18 @@ namespace OrbitalOffensive
             _enemyShips.Remove(ship);
         }
 
+        public bool Contains(Sprite sprite)
+        {
+            foreach (Ship ship in _enemyShips) 
+            {
+                if (ship.Sprite == sprite)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void SpawnShips()
         {
             int shipsToSpawn = 55;
@@ -79,7 +91,7 @@ namespace OrbitalOffensive
                     }
                 }
                 int x = (60 * rowCount) + xOffset;
-                Ship ship = new Ship(new string[] { "enemy", "ship" }, _enemyBitmaps[enemyBitmapIndex], x, y, 20f);
+                Ship ship = new Ship(new string[] { "enemy", "ship" }, _enemyBitmaps[enemyBitmapIndex], x, y, 20f, 1);
                 AddShip(ship);
                 rowCount++;
             }
