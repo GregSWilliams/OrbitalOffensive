@@ -12,9 +12,9 @@ namespace OrbitalOffensive
         
         public Object(string[] ids) 
         {
-            foreach(string id in ids) 
+            _ids = new List<string>();
+            foreach (string id in ids) 
             {
-                _ids = new List<string>();
                 AddIdentifier(id);
             }
         }
@@ -29,6 +29,7 @@ namespace OrbitalOffensive
 
         public bool AreYou(string id)
         {
+            id = id.ToLower();
             foreach(string ident in _ids) 
             {
                 if(ident == id)
@@ -41,6 +42,7 @@ namespace OrbitalOffensive
 
         private void AddIdentifier(string id)
         {
+            id = id.ToLower();
             _ids.Add(id);
         }
     }

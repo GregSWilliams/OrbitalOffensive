@@ -102,10 +102,13 @@ namespace OrbitalOffensive
             _fireTimer.Start();
         }
 
-        public void Update()
+        public void UpdateEnemies()
         {
-            Move();
-            Fire();
+            if (RemainingShips >= 1)
+            {
+                Move();
+                Fire();
+            }
         }
 
         public void Move()

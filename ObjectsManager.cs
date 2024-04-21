@@ -46,7 +46,7 @@ namespace OrbitalOffensive
         public void Update()
         {
             _playerManager.CheckForInput();
-            _enemyManager.Update();
+            _enemyManager.UpdateEnemies();
             _playerProjManager.Update();
             _enemyProjManager.Update();
             CheckForCollisions();
@@ -58,7 +58,7 @@ namespace OrbitalOffensive
             {
                 foreach (Ship s in _enemyManager.EnemyShips)
                 {
-                    if (p.CheckCollision(s.Sprite))
+                    if (p.CheckCollision(s.Sprite) && s.AreYou("enemy"))
                     {
                         p.Destroy();
                         s.Destroy();
@@ -66,6 +66,18 @@ namespace OrbitalOffensive
                         _playerProjManager.RemoveProjectile(p);
                         return;
                     }
+                }
+            }
+
+            foreach (Projectile p in _enemyProjManager.Projectiles)
+            {
+                Ship player = _playerManager.Player;
+                if (p.CheckCollision(player.Sprite) && player.AreYou("player"))
+                {
+                    player.TakeDamage(1);
+                    p.Destroy();
+                    _enemyProjManager.RemoveProjectile(p);
+                    return;
                 }
             }
         }

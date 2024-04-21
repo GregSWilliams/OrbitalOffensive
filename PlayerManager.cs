@@ -23,6 +23,14 @@ namespace OrbitalOffensive
             _fireTimer = SplashKit.CreateTimer("FireTimer");
         }
 
+        public Ship Player
+        {
+            get
+            {
+                return _player;
+            }
+        }
+
         public void SpawnPlayer()
         {
             Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
