@@ -16,8 +16,9 @@ namespace OrbitalOffensive
         private int _moveCount;
         private bool _firstMove;
         private int _timeBetweenTicks;
+        private ProjectileManager _projManager;
 
-        public EnemyManager()
+        public EnemyManager(ProjectileManager projMan)
         {
             _enemyShips = new List<Ship>();
             _enemyBitmaps = new List<Bitmap>();
@@ -28,6 +29,7 @@ namespace OrbitalOffensive
             _moveCount = 0;
             _firstMove = true;
             _timeBetweenTicks = 1000;
+            _projManager = projMan;
         }
 
         public List<Ship> EnemyShips
@@ -71,7 +73,7 @@ namespace OrbitalOffensive
                 {
                     rowCount = 0;
                     y = y + 60;
-                    if(i == 11 || i == 33)
+                    if (i == 11 || i == 33)
                     {
                         enemyBitmapIndex++;
                     }

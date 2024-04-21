@@ -12,11 +12,13 @@ namespace OrbitalOffensive
         private Ship _player;
         private float _startX;
         private float _startY;
+        private ProjectileManager _projManager;
 
-        public PlayerManager() 
+        public PlayerManager(ProjectileManager projMan) 
         {
             _startX = SplashKit.ScreenWidth()/2;
             _startY = SplashKit.ScreenHeight()-64;
+            _projManager = projMan;
         }
 
         public void SpawnPlayer()
@@ -41,6 +43,19 @@ namespace OrbitalOffensive
                     _player.X = _player.X + _player.Speed;
                 }
             }
+            if (SplashKit.KeyDown(KeyCode.SpaceKey))
+            {
+                Fire();
+            }
+        }
+
+        public void Fire()
+        {
+            Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
+            float projX = _player.X;
+            float projY = _player.Y;
+            Projectile projectile = new Projectile(new string[] { "player", "projectile" }, bitmap, projX, projY, 5f);
+            _projManager.AddProjectile(projectile);
         }
     }
 }

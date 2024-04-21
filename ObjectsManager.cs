@@ -10,11 +10,15 @@ namespace OrbitalOffensive
     {
         private PlayerManager _playerManager;
         private EnemyManager _enemyManager;
+        private ProjectileManager _playerProjManager;
+        private ProjectileManager _enemyProjManager;
 
         public ObjectsManager()
         {
-            _playerManager = new PlayerManager();
-            _enemyManager = new EnemyManager();
+            _playerProjManager = new ProjectileManager();
+            _enemyProjManager = new ProjectileManager();
+            _playerManager = new PlayerManager(_playerProjManager);
+            _enemyManager = new EnemyManager(_enemyProjManager);
         }
 
         public PlayerManager PlayerManager
@@ -43,6 +47,8 @@ namespace OrbitalOffensive
         {
             _playerManager.CheckForInput();
             _enemyManager.Move();
+            _playerProjManager.Update();
+            _enemyProjManager.Update();
         }
     }
 }
