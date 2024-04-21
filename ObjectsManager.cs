@@ -46,7 +46,7 @@ namespace OrbitalOffensive
         public void Update()
         {
             _playerManager.CheckForInput();
-            _enemyManager.Move();
+            _enemyManager.Update();
             _playerProjManager.Update();
             _enemyProjManager.Update();
             CheckForCollisions();

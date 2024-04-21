@@ -10,12 +10,14 @@ namespace OrbitalOffensive
     internal class Projectile : GameObject
     {
         private SplashKitSDK.Timer _timer;
+        private float _speed;
 
         public Projectile(string[] ids, Bitmap bitmap, float x, float y, float speed, int health)
             : base(ids, bitmap, x, y, health)
         {
             _timer = SplashKit.CreateTimer("AliveTimer");
             _timer.Start();
+            _speed = speed;
         }
 
         public int AliveTime
@@ -23,6 +25,14 @@ namespace OrbitalOffensive
             get
             {
                 return (int)_timer.Ticks;
+            }
+        }
+
+        public float Speed
+        {
+            get 
+            {
+                return _speed;
             }
         }
 

@@ -12,11 +12,12 @@ namespace OrbitalOffensive
     {
         private List<Ship> _enemyShips;
         private List<Bitmap> _enemyBitmaps;
-        private SplashKitSDK.Timer _timer;
+        private SplashKitSDK.Timer _moveTimer;
         private int _moveCount;
         private bool _firstMove;
         private int _timeBetweenTicks;
         private ProjectileManager _projManager;
+        private SplashKitSDK.Timer _fireTimer;
 
         public EnemyManager(ProjectileManager projMan)
         {
@@ -25,11 +26,12 @@ namespace OrbitalOffensive
             _enemyBitmaps.Add(SplashKit.LoadBitmap("green", "Resources\\green.png"));
             _enemyBitmaps.Add(SplashKit.LoadBitmap("yellow", "Resources\\yellow.png"));
             _enemyBitmaps.Add(SplashKit.LoadBitmap("red", "Resources\\red.png"));
-            _timer = SplashKit.CreateTimer("MoveTimer");
+            _moveTimer = SplashKit.CreateTimer("EnemyMoveTimer");
             _moveCount = 0;
             _firstMove = true;
             _timeBetweenTicks = 1000;
             _projManager = projMan;
+            _fireTimer = SplashKit.CreateTimer("EnemyFireTimer");
         }
 
         public List<Ship> EnemyShips
@@ -96,12 +98,19 @@ namespace OrbitalOffensive
                 rowCount++;
             }
 
-            _timer.Start();
+            _moveTimer.Start();
+            _fireTimer.Start();
+        }
+
+        public void Update()
+        {
+            Move();
+            Fire();
         }
 
         public void Move()
         {
-            if (SplashKit.TimerNamed("MoveTimer").Ticks > _timeBetweenTicks)
+            if (SplashKit.TimerNamed("EnemyMoveTimer").Ticks > _timeBetweenTicks)
             {
                 foreach (Ship ship in _enemyShips)
                 {
@@ -121,10 +130,29 @@ namespace OrbitalOffensive
                     }
                     ship.X = ship.X + ship.Speed;
                 }
-                SplashKit.ResetTimer("MoveTimer");
+                SplashKit.ResetTimer("EnemyMoveTimer");
                 _moveCount++;
             }
         }
 
+        public void Fire()
+        {
+            if (SplashKit.TimerTicks(_fireTimer) > 1000)
+            {
+                int rand = RandInRange();
+                Bitmap bitmap = SplashKit.LoadBitmap("red", "Resources\\red.png");
+                float projX = _enemyShips[rand].X;
+                float projY = _enemyShips[rand].Y;
+                Projectile projectile = new Projectile(new string[] { "enemy", "projectile" }, bitmap, projX, projY, -5f, 1);
+                _projManager.AddProjectile(projectile);
+                SplashKit.ResetTimer(_fireTimer);   
+            }
+        }
+
+        public int RandInRange()
+        {
+            Random rand = new Random();
+            return rand.Next(0, RemainingShips);
+        }
     }
 }

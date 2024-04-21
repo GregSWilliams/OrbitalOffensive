@@ -38,7 +38,7 @@ namespace OrbitalOffensive
         {
             foreach (Projectile p in _projectiles) 
             {
-                p.Y = p.Y - 10;
+                p.Y = p.Y - p.Speed;
             }
         }
     }
