@@ -22,7 +22,7 @@ namespace OrbitalOffensive
         public void SpawnPlayer()
         {
             Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
-            _player = new Ship(new string[] { "player" }, bitmap, _startX, _startY, 5f);
+            _player = new Ship(new string[] { "player", "ship" }, bitmap, _startX, _startY, 5f);
         }
 
         public void CheckForInput()

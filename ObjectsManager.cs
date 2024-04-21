@@ -9,10 +9,12 @@ namespace OrbitalOffensive
     internal class ObjectsManager
     {
         private PlayerManager _playerManager;
+        private EnemyManager _enemyManager;
 
         public ObjectsManager()
         {
             _playerManager = new PlayerManager();
+            _enemyManager = new EnemyManager();
         }
 
         public PlayerManager PlayerManager
@@ -23,9 +25,18 @@ namespace OrbitalOffensive
             }
         }
 
+        public EnemyManager EnemyManager
+        {
+            get
+            {
+                return _enemyManager;
+            }
+        }
+
         public void SpawnAll()
         {
             _playerManager.SpawnPlayer();
+            _enemyManager.SpawnShips();
         }
     }
 }

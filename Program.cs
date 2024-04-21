@@ -24,10 +24,10 @@ namespace OrbitalOffensive
 
                 if (SplashKit.KeyTyped(KeyCode.QKey))
                 {
+                    SplashKit.FreeAllSprites();
                     SplashKit.CloseAllWindows();
                     running = false;
                 }
-
 
                 objMan.PlayerManager.CheckForInput();
 
