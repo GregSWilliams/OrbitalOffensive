@@ -38,5 +38,11 @@ namespace OrbitalOffensive
             _playerManager.SpawnPlayer();
             _enemyManager.SpawnShips();
         }
+
+        public void Update()
+        {
+            _playerManager.CheckForInput();
+            _enemyManager.Move();
+        }
     }
 }

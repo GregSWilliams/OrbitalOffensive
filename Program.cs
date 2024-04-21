@@ -11,7 +11,7 @@ namespace OrbitalOffensive
     {
         public static void Main()
         {
-            Window window = new Window("Orbital Offensive", 800, 600);
+            Window window = new Window("Orbital Offensive", 1000, 800);
             bool running = true;
 
             ObjectsManager objMan = new ObjectsManager();
@@ -29,7 +29,7 @@ namespace OrbitalOffensive
                     running = false;
                 }
 
-                objMan.PlayerManager.CheckForInput();
+                objMan.Update();
 
                 SplashKit.DrawAllSprites();
                 SplashKit.UpdateAllSprites();
