@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -42,9 +43,13 @@ namespace OrbitalOffensive
 
         public void GameLoop()
         {
-            int playerLife = _objectsManager.PlayerManager.GetHealth();
+            int playerLife = _objectsManager.PlayerManager.GetHealth;
+            int playerScore = _objectsManager.PlayerManager.GetScore;
             int enemiesRemaining = _objectsManager.EnemyManager.RemainingShips;
-            if (playerLife <= 0 || _objectsManager.EnemyManager.ReachedBottom()) 
+            bool enemiesReachedBottom = _objectsManager.EnemyManager.ReachedBottom();
+            //debug
+            Console.WriteLine(_objectsManager.PlayerManager.GetScore);
+            if (playerLife <= 0 || enemiesReachedBottom) 
             {
                 _gameState = GameState.PlayerLoses;
             }
@@ -56,13 +61,14 @@ namespace OrbitalOffensive
             {
                 _objectsManager.Update();
                 _textManager.DrawLife(playerLife);
-                _textManager.DrawScore(1000);
+                _textManager.DrawScore(playerScore);
                 SplashKit.DrawAllSprites();
                 SplashKit.UpdateAllSprites();
             }
-            else if (_gameState == GameState.PlayerWins || _gameState == GameState.PlayerLoses)
+            else if ((_gameState == GameState.PlayerWins || _gameState == GameState.PlayerLoses) && _gameRunning)
             {
-                _textManager.DrawGameOver(_gameState);
+                _objectsManager.PlayerManager.StopTimer();
+                _textManager.DrawGameOver(_gameState, playerScore);
             }
         }
 

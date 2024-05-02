@@ -14,6 +14,8 @@ namespace OrbitalOffensive
         private float _startY;
         private ProjectileManager _projManager;
         private SplashKitSDK.Timer _fireTimer;
+        private SplashKitSDK.Timer _scoreTimer;
+        private int _score;
 
         public PlayerManager(ProjectileManager projMan) 
         {
@@ -21,6 +23,8 @@ namespace OrbitalOffensive
             _startY = SplashKit.ScreenHeight()-64;
             _projManager = projMan;
             _fireTimer = SplashKit.CreateTimer("FireTimer");
+            _scoreTimer = SplashKit.CreateTimer("ScoreTimer");
+            _score = 10000;
         }
 
         public Ship Player
@@ -31,11 +35,28 @@ namespace OrbitalOffensive
             }
         }
 
+        public int GetHealth
+        {
+            get
+            {
+                return _player.Health;
+            }
+        }
+
+        public int GetScore
+        {
+            get
+            {
+                return (_score - (int)_scoreTimer.Ticks);
+            }
+        }
+
         public void SpawnPlayer()
         {
             Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
             _player = new Ship(new string[] { "player", "ship" }, bitmap, _startX, _startY, 5f, 3);
             SplashKit.StartTimer(_fireTimer);
+            SplashKit.StartTimer(_scoreTimer);
         }
 
         public void Update()
@@ -81,9 +102,9 @@ namespace OrbitalOffensive
             _projManager.AddProjectile(projectile);
         }
 
-        public int GetHealth()
+        public void StopTimer()
         {
-            return _player.Health;
+            _scoreTimer.Pause();
         }
     }
 }

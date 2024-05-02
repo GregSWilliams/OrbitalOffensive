@@ -18,7 +18,7 @@ namespace OrbitalOffensive
 
         public void DrawScore(int score)
         {
-            string scoreText = String.Format("Score:");
+            string scoreText = String.Format("Score: {0}", score);
             SplashKit.DrawText(scoreText, Color.BrightGreen, _font, 60, 10, 10);
         }
 
@@ -35,13 +35,14 @@ namespace OrbitalOffensive
             }
         }
 
-        public void DrawGameOver(GameState gameState)
+        public void DrawGameOver(GameState gameState, int score)
         {
             SplashKit.DrawText("GAME OVER", Color.BrightGreen, _font, 60, 350, 275);
             switch (gameState)
             {
                 case GameState.PlayerWins:
                     SplashKit.DrawText("PLAYER WINS", Color.BrightGreen, _font, 60, 320, 350);
+                    SplashKit.DrawText(string.Format("Score: {0}", score), Color.BrightGreen, _font, 60, 330, 420);
                     break;
                 case GameState.PlayerLoses:
                     SplashKit.DrawText("YOU LOSE", Color.BrightGreen, _font, 60, 370, 350);
