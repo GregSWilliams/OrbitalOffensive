@@ -26,6 +26,9 @@
     <None Update="Resources\red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\RETROTECH.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\yellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

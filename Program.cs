@@ -4,6 +4,7 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using SplashKitSDK;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OrbitalOffensive
 {
@@ -12,10 +13,8 @@ namespace OrbitalOffensive
         public static void Main()
         {
             Window window = new Window("Orbital Offensive", 1000, 800);
-            bool running = true;
 
-            ObjectsManager objMan = new ObjectsManager();
-            objMan.SpawnAll();
+            GameManager gameManager = new GameManager();
 
             do
             {
@@ -24,18 +23,13 @@ namespace OrbitalOffensive
 
                 if (SplashKit.KeyTyped(KeyCode.QKey))
                 {
-                    SplashKit.FreeAllSprites();
-                    SplashKit.CloseAllWindows();
-                    running = false;
+                    gameManager.QuitGame();
                 }
 
-                objMan.Update();
-
-                SplashKit.DrawAllSprites();
-                SplashKit.UpdateAllSprites();
+                gameManager.GameLoop();
 
                 SplashKit.RefreshScreen(60);
-            } while (running);
+            } while (gameManager.GameRunning);
         }
     }
 }

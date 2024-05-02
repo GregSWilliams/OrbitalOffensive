@@ -80,5 +80,10 @@ namespace OrbitalOffensive
             Projectile projectile = new Projectile(new string[] { "player", "projectile" }, bitmap, projX, projY, 5f, 1);
             _projManager.AddProjectile(projectile);
         }
+
+        public int GetHealth()
+        {
+            return _player.Health;
+        }
     }
 }
