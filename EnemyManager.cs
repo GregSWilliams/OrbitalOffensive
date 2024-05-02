@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -144,8 +145,8 @@ namespace OrbitalOffensive
             {
                 int rand = RandInRange();
                 Bitmap bitmap = SplashKit.LoadBitmap("projectile2", "Resources\\projectile2.png");
-                float projX = _enemyShips[rand].X;
-                float projY = _enemyShips[rand].Y;
+                float projX = _enemyShips[rand].X + (_enemyShips[rand].Sprite.Width / 2) - (bitmap.Width / 2); ;
+                float projY = _enemyShips[rand].Y + bitmap.Height;
                 Projectile projectile = new Projectile(new string[] { "enemy", "projectile" }, bitmap, projX, projY, -5f, 1);
                 _projManager.AddProjectile(projectile);
                 SplashKit.ResetTimer(_fireTimer);   
