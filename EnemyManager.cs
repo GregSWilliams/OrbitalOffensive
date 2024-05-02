@@ -143,7 +143,7 @@ namespace OrbitalOffensive
             if (SplashKit.TimerTicks(_fireTimer) > 1000)
             {
                 int rand = RandInRange();
-                Bitmap bitmap = SplashKit.LoadBitmap("red", "Resources\\red.png");
+                Bitmap bitmap = SplashKit.LoadBitmap("projectile2", "Resources\\projectile2.png");
                 float projX = _enemyShips[rand].X;
                 float projY = _enemyShips[rand].Y;
                 Projectile projectile = new Projectile(new string[] { "enemy", "projectile" }, bitmap, projX, projY, -5f, 1);

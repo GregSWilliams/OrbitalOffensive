@@ -17,6 +17,12 @@
     <None Update="Resources\player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\projectile1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\projectile2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -74,7 +74,7 @@ namespace OrbitalOffensive
 
         public void Fire()
         {
-            Bitmap bitmap = SplashKit.LoadBitmap("player", "Resources\\player.png");
+            Bitmap bitmap = SplashKit.LoadBitmap("projectile1", "Resources\\projectile1.png");
             float projX = _player.X;
             float projY = _player.Y;
             Projectile projectile = new Projectile(new string[] { "player", "projectile" }, bitmap, projX, projY, 5f, 1);
