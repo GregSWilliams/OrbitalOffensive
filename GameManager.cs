@@ -42,10 +42,20 @@ namespace OrbitalOffensive
 
         public void GameLoop()
         {
+            int playerLife = _objectsManager.PlayerManager.GetHealth();
+            int enemiesRemaining = _objectsManager.EnemyManager.RemainingShips;
+            if (playerLife <= 0 || _objectsManager.EnemyManager.ReachedBottom()) 
+            {
+                _gameState = GameState.PlayerLoses;
+            }
+            if (enemiesRemaining <= 0)
+            {
+                _gameState = GameState.PlayerWins;
+            }
             if (_gameState == GameState.Started) 
             {
                 _objectsManager.Update();
-                _textManager.DrawLife(_objectsManager.PlayerManager.GetHealth());
+                _textManager.DrawLife(playerLife);
                 _textManager.DrawScore(1000);
                 SplashKit.DrawAllSprites();
                 SplashKit.UpdateAllSprites();

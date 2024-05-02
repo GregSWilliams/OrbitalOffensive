@@ -61,18 +61,6 @@ namespace OrbitalOffensive
             _enemyShips.Remove(ship);
         }
 
-        public bool Contains(Sprite sprite)
-        {
-            foreach (Ship ship in _enemyShips) 
-            {
-                if (ship.Sprite == sprite)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public void SpawnShips()
         {
             int shipsToSpawn = 55;
@@ -143,7 +131,8 @@ namespace OrbitalOffensive
         {
             if (SplashKit.TimerTicks(_fireTimer) > 1000)
             {
-                int rand = RandInRange();
+                Random random = new Random();
+                int rand = random.Next(0, RemainingShips);
                 Bitmap bitmap = SplashKit.LoadBitmap("projectile2", "Resources\\projectile2.png");
                 float projX = _enemyShips[rand].X + (_enemyShips[rand].Sprite.Width / 2) - (bitmap.Width / 2); ;
                 float projY = _enemyShips[rand].Y + bitmap.Height;
@@ -153,10 +142,13 @@ namespace OrbitalOffensive
             }
         }
 
-        public int RandInRange()
+        public bool ReachedBottom()
         {
-            Random rand = new Random();
-            return rand.Next(0, RemainingShips);
+            if (_enemyShips.Last().Y >= 600)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

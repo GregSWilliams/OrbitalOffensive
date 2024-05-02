@@ -77,7 +77,7 @@ namespace OrbitalOffensive
                 Ship player = _playerManager.Player;
                 if (p.CheckCollision(player.Sprite) && player.AreYou("player"))
                 {
-                    if (player.Health >= 2)
+                    if (player.Health >= 1)
                     {
                         player.TakeDamage(1);
                     }
