@@ -11,6 +11,9 @@
     <None Update="Resources\green.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\obstacle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

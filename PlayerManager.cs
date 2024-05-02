@@ -38,6 +38,14 @@ namespace OrbitalOffensive
             SplashKit.StartTimer(_fireTimer);
         }
 
+        public void Update()
+        {
+            if (_player.Health > 0)
+            {
+                CheckForInput();
+            }
+        }
+
         public void CheckForInput()
         {
             if (SplashKit.KeyDown(KeyCode.LeftKey) || SplashKit.KeyDown(KeyCode.AKey))

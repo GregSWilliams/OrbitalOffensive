@@ -12,6 +12,7 @@ namespace OrbitalOffensive
         private EnemyManager _enemyManager;
         private ProjectileManager _playerProjManager;
         private ProjectileManager _enemyProjManager;
+        private ObstacleManager _obstacleManager;
 
         public ObjectsManager()
         {
@@ -19,6 +20,7 @@ namespace OrbitalOffensive
             _enemyProjManager = new ProjectileManager();
             _playerManager = new PlayerManager(_playerProjManager);
             _enemyManager = new EnemyManager(_enemyProjManager);
+            _obstacleManager = new ObstacleManager();
         }
 
         public PlayerManager PlayerManager
@@ -41,11 +43,12 @@ namespace OrbitalOffensive
         {
             _playerManager.SpawnPlayer();
             _enemyManager.SpawnShips();
+            _obstacleManager.SpawnObstacles();
         }
 
         public void Update()
         {
-            _playerManager.CheckForInput();
+            _playerManager.Update();
             _enemyManager.UpdateEnemies();
             _playerProjManager.Update();
             _enemyProjManager.Update();
@@ -74,10 +77,54 @@ namespace OrbitalOffensive
                 Ship player = _playerManager.Player;
                 if (p.CheckCollision(player.Sprite) && player.AreYou("player"))
                 {
-                    player.TakeDamage(1);
+                    if (player.Health >= 2)
+                    {
+                        player.TakeDamage(1);
+                    }
+                    else
+                    {
+                        player.Destroy();
+                        //game over
+                    }
                     p.Destroy();
                     _enemyProjManager.RemoveProjectile(p);
                     return;
+                }
+            }
+
+            foreach (Projectile p in _enemyProjManager.Projectiles)
+            {
+                foreach (Obstacle ob in _obstacleManager.Obstacles)
+                {
+                    foreach (ObstaclePart op in ob.ObstacleParts)
+                    {
+                       if (p.CheckCollision(op.Sprite))
+                        {
+                            p.Destroy();
+                            op.Destroy();
+                            ob.RemovePart(op);
+                            _enemyProjManager.RemoveProjectile(p);
+                            return;
+                        }
+                    }
+                }
+            }
+
+            foreach (Projectile p in _playerProjManager.Projectiles)
+            {
+                foreach (Obstacle ob in _obstacleManager.Obstacles)
+                {
+                    foreach (ObstaclePart op in ob.ObstacleParts)
+                    {
+                        if (p.CheckCollision(op.Sprite))
+                        {
+                            p.Destroy();
+                            op.Destroy();
+                            ob.RemovePart(op);
+                            _playerProjManager.RemoveProjectile(p);
+                            return;
+                        }
+                    }
                 }
             }
         }
