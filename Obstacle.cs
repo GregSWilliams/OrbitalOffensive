@@ -27,22 +27,6 @@ namespace OrbitalOffensive
             true, false, false, false, false, true};
         }
 
-        public float StartX
-        {
-            set
-            {
-                _startX = value;
-            }
-        }
-
-        public float StartY
-        {
-            set
-            {
-                _startY = value;
-            }
-        }
-
         public List<ObstaclePart> ObstacleParts
         {
             get

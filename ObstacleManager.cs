@@ -34,9 +34,5 @@ namespace OrbitalOffensive
                 obs.SpawnParts();
             }
         }
-
-        public void Update()
-        {
-        }
     }
 }

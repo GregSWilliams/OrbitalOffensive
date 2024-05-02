@@ -19,14 +19,6 @@ namespace OrbitalOffensive
             }
         }
 
-        public string GetFirstId
-        {
-            get
-            {
-                return _ids[0];
-            }
-        }
-
         public bool AreYou(string id)
         {
             id = id.ToLower();
