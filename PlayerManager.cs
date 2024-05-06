@@ -24,7 +24,7 @@ namespace OrbitalOffensive
             _projManager = projMan;
             _fireTimer = SplashKit.CreateTimer("FireTimer");
             _scoreTimer = SplashKit.CreateTimer("ScoreTimer");
-            _score = 10000;
+            _score = 100000;
         }
 
         public Ship Player

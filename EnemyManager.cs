@@ -144,9 +144,12 @@ namespace OrbitalOffensive
 
         public bool ReachedBottom()
         {
-            if (_enemyShips.Last().Y >= 600)
+            if (_enemyShips.Count > 1)
             {
-                return true;
+                if (_enemyShips.Last().Y >= 600)
+                {
+                    return true;
+                }
             }
             return false;
         }
