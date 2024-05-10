@@ -47,8 +47,6 @@ namespace OrbitalOffensive
             int playerScore = _objectsManager.PlayerManager.GetScore;
             int enemiesRemaining = _objectsManager.EnemyManager.RemainingShips;
             bool enemiesReachedBottom = _objectsManager.EnemyManager.ReachedBottom();
-            //debug
-            Console.WriteLine(_objectsManager.PlayerManager.GetScore);
             if (playerLife <= 0 || enemiesReachedBottom) 
             {
                 _gameState = GameState.PlayerLoses;
