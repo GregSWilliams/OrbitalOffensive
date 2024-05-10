@@ -12,7 +12,6 @@ namespace OrbitalOffensive
     internal class EnemyManager
     {
         private List<Ship> _enemyShips;
-        private List<Bitmap> _enemyBitmaps;
         private SplashKitSDK.Timer _moveTimer;
         private int _moveCount;
         private bool _firstMove;
@@ -23,10 +22,6 @@ namespace OrbitalOffensive
         public EnemyManager(ProjectileManager projMan)
         {
             _enemyShips = new List<Ship>();
-            _enemyBitmaps = new List<Bitmap>();
-            _enemyBitmaps.Add(SplashKit.LoadBitmap("green", "Resources\\green.png"));
-            _enemyBitmaps.Add(SplashKit.LoadBitmap("yellow", "Resources\\yellow.png"));
-            _enemyBitmaps.Add(SplashKit.LoadBitmap("red", "Resources\\red.png"));
             _moveTimer = SplashKit.CreateTimer("EnemyMoveTimer");
             _moveCount = 0;
             _firstMove = true;
@@ -63,6 +58,10 @@ namespace OrbitalOffensive
 
         public void SpawnShips()
         {
+            List<Bitmap> _enemyBitmaps = new List<Bitmap>();
+            _enemyBitmaps.Add(SplashKit.LoadBitmap("green", "Resources\\green.png"));
+            _enemyBitmaps.Add(SplashKit.LoadBitmap("yellow", "Resources\\yellow.png"));
+            _enemyBitmaps.Add(SplashKit.LoadBitmap("red", "Resources\\red.png"));
             int shipsToSpawn = 55;
             int rows = 5;
             int y = _enemyBitmaps[0].Height * 3;
